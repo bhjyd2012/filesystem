@@ -1,4 +1,4 @@
-package com.hlsfilesystem.controller;
+package com.hlsfilesystem.component;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class MainController {
 	}
 	@RequestMapping("/login")
 	public String getlogin(String username,String password,ModelMap model) {
-		System.out.println("进入登录请求");
+		System.out.println("进入login");
 		 return "login";
 	}
 	
