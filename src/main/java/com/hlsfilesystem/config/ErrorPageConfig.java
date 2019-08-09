@@ -6,6 +6,14 @@ import org.springframework.boot.web.server.ErrorPageRegistry;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 
+/**   
+ * @ClassName:  ErrorPageConfig   
+ * @Description:TODO(ErrorPageRegistrar配置错误页)   
+ * @author: hucheng 
+ * @date:   2019年8月9日 下午3:33:19       
+ * @Copyright: 2019 www.xxxx.com Inc. All rights reserved. 
+ * 注意：本内容仅限于xxxxxxxxx传阅，禁止外泄以及用于其他的商业目
+*/  
 @Configuration
 public class ErrorPageConfig implements ErrorPageRegistrar{
 

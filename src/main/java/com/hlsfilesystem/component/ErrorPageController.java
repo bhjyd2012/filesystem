@@ -4,6 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**   
+ * @ClassName:  ErrorPageController   
+ * @Description:TODO(错误页提示)   
+ * @author: hucheng 
+ * @date:   2019年8月9日 下午3:32:37       
+ * @Copyright: 2019 www.xxxx.com Inc. All rights reserved. 
+ * 注意：本内容仅限于xxxxxxxxx传阅，禁止外泄以及用于其他的商业目
+*/  
 @Controller
 public class ErrorPageController {
 		@RequestMapping("401")

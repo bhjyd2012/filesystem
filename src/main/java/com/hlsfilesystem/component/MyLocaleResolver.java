@@ -10,6 +10,14 @@ import java.util.Locale;
 /**
  * 可以在连接上携带区域信息
  */
+/**   
+ * @ClassName:  MyLocaleResolver   
+ * @Description:TODO(国际化使用)   
+ * @author: hucheng 
+ * @date:   2019年8月9日 下午3:35:34       
+ * @Copyright: 2019 www.xxxx.com Inc. All rights reserved. 
+ * 注意：本内容仅限于xxxxxxxxx传阅，禁止外泄以及用于其他的商业目
+*/  
 public class MyLocaleResolver implements LocaleResolver {
     
     @Override
