@@ -1,0 +1,26 @@
+﻿<!doctype html public "-//w3c//dtd xhtml 1.0 frameset//en" "http://www.w3.org/tr/xhtml1/dtd/xhtml1-frameset.dtd">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+    <head>
+        <meta http-equiv=content-type content="text/html; charset=utf-8" />
+        <meta http-equiv=pragma content=no-cache />
+        <meta http-equiv=cache-control content=no-cache />
+        <meta http-equiv=expires content=-1000 />
+        <link href="css/admin.css" type="text/css" rel="stylesheet" th:href="@{/css/admin.css}"/>
+        <title>华莱士后台系统</title>
+    </head>
+    <div sec:authorize="!isAuthenticated()" style="margin-top: 250px;">
+    <h2 align="center" style="font-size: 50px;">您还未登陆，如果想查看 <a th:href="@{/login}" th:style="'text-decoration:none'">请登录!</a></h2>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+    <frameset border=0 framespacing=0 rows="60, *" frameborder=0>
+            <frame name=head src="/head" frameborder=0 noresize scrolling=no th:src="@{head}"/>
+            <frameset cols="170, *">
+                <frame name=left src="/left" frameborder=0 noresize th:src="@{left}"/>
+                <frame name=right src="/right" frameborder=0 noresize scrolling=yes th:src="@{right}"/>
+            </frameset>
+    </frameset>
+    <noframes>
+    </noframes>
+    </div>
+</html>
