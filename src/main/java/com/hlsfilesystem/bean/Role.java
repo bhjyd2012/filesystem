@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableName;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -24,9 +25,20 @@ public class Role implements Serializable {
     private Integer roleid;
     private String rolename;
     private Integer rolestate;
+    
+    private List<Menu> menus;//对应多个菜单
+    
 
 
-    public Integer getRoleid() {
+    public List<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
+	}
+
+	public Integer getRoleid() {
         return roleid;
     }
 

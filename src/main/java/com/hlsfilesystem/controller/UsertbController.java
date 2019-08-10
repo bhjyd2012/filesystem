@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 public class UsertbController {
 	@GetMapping("/userlist")
 	public String getPowerUserList() {
-		System.out.println("进入index");
+		
 		 return "power/user/list";
 	}
 }

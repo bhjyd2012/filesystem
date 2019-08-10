@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * @Copyright: 2019 www.xxxx.com Inc. All rights reserved. 
  * 注意：本内容仅限于xxxxxxxxx传阅，禁止外泄以及用于其他的商业目
 */  
-@Component
+//@Component
 public class TaskScheduledService {
 	 /**   
 	 * @Title: deleteFile   

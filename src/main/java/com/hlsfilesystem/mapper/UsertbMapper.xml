@@ -21,6 +21,12 @@
         <result column="logincount" property="logincount" />
         <result column="regdate" property="regdate" />
         <result column="managerid" property="managerid" />
+        <!-- 角色 -->
+        <association property="role" javaType="com.hlsfilesystem.bean.Role">
+	    <id column="roleid" jdbcType="INTEGER" property="roleid" />
+	    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
+	    <result column="rolestate" jdbcType="INTEGER" property="rolestate" />
+  </association>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -29,10 +35,8 @@
     </sql>
     
     <!-- 根据用户名查询用户 -->
-	<select id="getUserByName" parameterType="String" resultType="com.hlsfilesystem.bean.Usertb">
-			select * from usertb u 
-			left join role r
-			on u.role_id = r.roleid
-			where u.user_name = #{username}
+	<select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
+	select * from usertb u ,role r where u.role_id = r.roleid
+	and u.user_name = #{username}
 	</select>
 </mapper>

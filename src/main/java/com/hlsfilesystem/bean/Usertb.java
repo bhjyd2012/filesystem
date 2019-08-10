@@ -2,6 +2,8 @@ package com.hlsfilesystem.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
+
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -36,9 +38,20 @@ public class Usertb implements Serializable {
     private Integer logincount;
     private Date regdate;
     private Integer managerid;
+    @TableField(exist = false)
+    private Role role;//对应角色
+    
 
 
-    public Integer getUserId() {
+    public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public Integer getUserId() {
         return userId;
     }
 
@@ -150,23 +163,14 @@ public class Usertb implements Serializable {
         this.managerid = managerid;
     }
 
-    @Override
-    public String toString() {
-        return "Usertb{" +
-        ", userId=" + userId +
-        ", roleId=" + roleId +
-        ", userName=" + userName +
-        ", userPs=" + userPs +
-        ", userRealname=" + userRealname +
-        ", userSex=" + userSex +
-        ", userEmail=" + userEmail +
-        ", userPhone=" + userPhone +
-        ", userAddress=" + userAddress +
-        ", userIdcard=" + userIdcard +
-        ", userContent=" + userContent +
-        ", logincount=" + logincount +
-        ", regdate=" + regdate +
-        ", managerid=" + managerid +
-        "}";
-    }
+	@Override
+	public String toString() {
+		return "Usertb [userId=" + userId + ", roleId=" + roleId + ", userName=" + userName + ", userPs=" + userPs
+				+ ", userRealname=" + userRealname + ", userSex=" + userSex + ", userEmail=" + userEmail
+				+ ", userPhone=" + userPhone + ", userAddress=" + userAddress + ", userIdcard=" + userIdcard
+				+ ", userContent=" + userContent + ", logincount=" + logincount + ", regdate=" + regdate
+				+ ", managerid=" + managerid + ", role=" + role + "]";
+	}
+
+    
 }

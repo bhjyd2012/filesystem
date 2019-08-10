@@ -64,16 +64,16 @@
                 <td style="color: #880000"><span sec:authentication="name"></span></td></tr>
             <tr>
                 <td align=right>真实姓名：</td>
-                <td style="color: #880000">admin</td></tr>
+                <td style="color: #880000" th:text="${session.user.userRealname}">admin</td></tr>
             <tr>
                 <td align=right>注册时间：</td>
-                <td style="color: #880000">2007-7-25 15:02:04</td></tr>
+                <td style="color: #880000" th:text="${#dates.format(session.user.regdate, 'yyyy年MM月dd日')}">2007-7-25 15:02:04</td></tr>
             <tr>
                 <td align=right>登陆次数：</td>
-                <td style="color: #880000">58</td></tr>
-            <!-- <tr>
+                <td style="color: #880000" th:text="${session.user.logincount}">58</td></tr>
+            <tr>
                 <td align=right>上线时间：</td>
-                <td style="color: #880000">2008-12-27 17:02:54</td></tr> -->
+                <td style="color: #880000"  th:text="${#dates.format(session.logintime, 'yyyy-MM-dd HH:mm:ss')}">2007-7-25 15:02:04</td></tr>
         </table>		
 		<div style="text-align:center;">
 		<p>维护信息：<b>XXXXXX管理系统</b></p>

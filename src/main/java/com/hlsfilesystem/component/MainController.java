@@ -1,6 +1,13 @@
 package com.hlsfilesystem.component;
 
+import java.util.Date;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -27,7 +34,7 @@ public class MainController {
 	
 	@GetMapping("/")
 	public String gethome() {
-		return "login";
+		return "index";
 	}
 	@GetMapping("/head")
 	public String gethead() {
@@ -41,13 +48,29 @@ public class MainController {
 	public String getright() {
 		return "right";
 	}
+	
 	@GetMapping("/index")
-	public String getindex() {
+	public String getindex(HttpServletRequest request,HttpSession session) {
 		System.out.println("进入index");
+		String username = request.getRemoteUser();
+		System.out.println(username);
+		if (username!=null) {
+			
+			Usertb user = usertbService.getUserByName("admin");
+			user.setLogincount(user.getLogincount()+1);
+			boolean b = usertbService.updateById(user);
+			System.err.println(b+"=============");
+			System.out.println(user);
+			session.setAttribute("user", user);
+			session.setAttribute("logintime", new Date());
+			System.out.println(new Date());
+		}
+		
+		
 		 return "index";
 	}
 	@RequestMapping("/login")
-	public String getlogin(String username,String password,ModelMap model) {
+	public String getlogin() {
 		System.out.println("进入login");
 		 return "login";
 	}
