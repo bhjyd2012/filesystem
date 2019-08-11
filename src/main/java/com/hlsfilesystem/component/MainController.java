@@ -54,8 +54,7 @@ public class MainController {
 		System.out.println("进入index");
 		String username = request.getRemoteUser();
 		System.out.println(username);
-		if (username!=null) {
-			
+		if (username!=null) {			
 			Usertb user = usertbService.getUserByName("admin");
 			user.setLogincount(user.getLogincount()+1);
 			boolean b = usertbService.updateById(user);

@@ -13,11 +13,26 @@
     <script src="../../Script/jBox/i18n/jquery.jBox-zh-CN.js" type="text/javascript" th:src="@{/js/jBox/i18n/jquery.jBox-zh-CN.js}"></script>
     <script src="../../Script/Common.js" type="text/javascript" th:src="@{/js/Common.js}"></script>
     <script src="../../Script/Data.js" type="text/javascript" th:src="@{/js/Data.js}"></script>
-    <script>
-		function del(){
-			confirm("确定删除？");
-		}
-	</script>
+     <script type="text/javascript" th:inline="javascript">
+       
+	
+	/*全选不全选 */
+  	function allbox(){
+	  var flag=document.getElementById("allboxs").checked;
+      var cks=document.getElementsByName("onebox");
+      for(var i=0;i<cks.length;i++){
+          cks[i].checked=flag;
+      }
+	}
+  	
+  	
+  	
+	function delall(){
+		alert("是否删除?");
+		alert([[${#httpServletRequest.getContextPath()}]]);
+	}
+  	
+   </script>
 
 </head>
 <body>
@@ -65,98 +80,95 @@
                 
                
                 
-                <tr align="center">
+                <tr align="center" th:each="user:${pager.records}">
 					<th><input type="checkbox"/></th>
-                    <td>
-                        1
-                    </td>
-                    
-                    <td>
-                      zhangsan
-                    </td>
-                    <td>
-                       <a href="info.html">张三</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                       管理员
-                    </td>
-                    
+                    <td th:text="${userStat.index+1}">1</td>
+                    <td th:text="${user.userName}">zhangsan</td>
+                    <td th:text="${user.userRealname}"><a href="info.html">张三</a></td>
+                    <td th:text="${user.role.rolename}">&nbsp;管理员</td>
                     <td>&nbsp;
                         <a href="edit.html">修改</a>						   
 						<a href="javascript:void(0)" onclick="del();return false" class="tablelink"> 删除</a>
                     </td>
                 </tr>
                 
-                 <tr align="center">
-                   
-                    <th><input type="checkbox"/></th>
-					 <td>
-                        2
-                    </td>
-                    <td>
-                      zhangsan
-                    </td>
-                    <td>
-                       <a href="info.html">李四</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                       学生
-                    </td>
-                    <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
-							<a href="JavaScript:void(0)" onclik="del();return false" class="tablelink">删除</a>
-                    </td>
-                </tr>
+                 
                 
                 
-                <tr align="center">
-                    <th><input type="checkbox"/></th>
-					<td>
-                        3
-                    </td>
-                    <td>
-                      zhangsan
-                    </td>
-                    <td>
-                       <a href="info.html">王五</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                       老师
-                    </td>
-                    <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
-						<a href="JavaScript:void(0)" onclik="del();return false" class="tablelink">删除</a>
-                    </td>
-                </tr>
-				<tr align="center">
-                    <th><input type="checkbox"/></th>
-					<td>
-                        4
-                    </td>
-                    <td>
-                      zhangsan
-                    </td>
-                    <td>
-                       <a href="info.html">赵六</a>
-                    </td>
-                    
-                    <td>&nbsp;
-                       主任
-                    </td>
-                    <td>&nbsp;
-                        <a href="edit.html">修改</a>						   
-						<a href="" class="tablelink">删除</a>
-                    </td>
-                </tr>
+               
+				
                 
              
             </tbody>
         </table>
         
-          <div class='MainStyle'><div class=''><a href='' target='_self'>首页</a></div><div class=''><a href='javascript:void(0)' target='_self'>上一页</a></div><div class='NowItemStyle'><a href='javascript:void(0)' target='_self'>1</a></div><div class=''><a href='http://sm.zk0731.com/OnlineTeaching/StudentMaterial.aspx?page=2' target='_self'>2</a></div><div class=''><a href='http://sm.zk0731.com/OnlineTeaching/StudentMaterial.aspx?page=3' target='_self'>3</a></div><div class=''><a href='http://sm.zk0731.com/OnlineTeaching/StudentMaterial.aspx?page=2' target='_self'>下一页</a></div><div class=''><a href='http://sm.zk0731.com/OnlineTeaching/StudentMaterial.aspx?page=3' target='_self'>尾页</a></div><div class=''>总共<b>44</b>条数据</div><div class=''>每页<b>20</b>条数据</div><div class=''><b>1</b>/3</div><div class='SearchStyle'><input type='text' id='john_Page_Search' onkeydown="if(event.keyCode == 13){page_searchIndex();}"/></div><div class=''><input type='button' value='Go' onclick="page_searchIndex()"/></div></div><script>    function page_searchIndex(){        var searchText = document.getElementById('john_Page_Search');        var searchIndex = searchText != null && searchText.value != '' ? parseInt(searchText.value) : 0;        if(searchIndex > 0 && searchIndex <= 3) {             window.location='StudentMaterial.aspx?page=' + searchIndex;        }        else        {            alert('需要跳转的页码不能超出范围！');        }    }</script>
+          <div class='MainStyle'>
+          <div class=''><a href='' target='_self' th:href="@{/usertb/userlist/(index=1,size=${pager.pageSize})}">首页</a></div>
+          
+          <div class=''  th:if="${pager.pageIndex>1}">
+          <a href='javascript:void(0)' target='_self' th:href="@{/usertb/userlist/(index=${pager.pageIndex-1},size=${pager.pageSize})}">上一页</a></div>
+          
+          <div th:each="num:${pager.numbers}">
+          <a href='' target='_self' style="color: red;" 
+          th:if="${num==pager.pageIndex}" th:text="${num}">1</a>
+          <a href='' target='_self'  th:if="${num!=pager.pageIndex}" th:text="${num}"
+          th:href="@{/usertb/userlist/(index=${num},size=${pager.pageSize})}">1</a>
+          </div>
+          
+          
+          
+          <div class='' th:if="${pager.pageIndex<pager.pageCount}">
+          <a href='' target='_self' th:href="@{/usertb/userlist/(index=${pager.pageIndex+1},size=${pager.pageSize})}">下一页</a>
+          </div>
+          
+          <div class=''>
+          <a href='' target='_self' th:href="@{/usertb/userlist/(index=${pager.pageCount},size=${pager.pageSize})}">尾页</a>
+          </div>
+          
+          <div class=''><b th:text="${pager.totalCount}">44</b>条数据</div>
+          <div class=''>共<b th:text="${pager.pageCount}">20</b>页</div>
+          
+          <div class='SearchStyle'>
+          <input type='text' id='john_Page_Search' onkeydown="if(event.keyCode == 13){page_searchIndex();}"/></div>
+          <div class=''><input type='button' value='Go' onclick="page_searchIndex()"/></div>
+          <div>
+          		每页<select id="pageNumber" th:onchange="|chagePageSize(${pager.pageIndex});|">
+			   <option value="5" th:selected="${pager.pageSize eq 5}">5</option>
+			   <option value="10" th:selected="${pager.pageSize eq 10}">10</option>
+			   <option value="15" th:selected="${pager.pageSize eq 15}">15</option>
+			   <option value="20" th:selected="${pager.pageSize eq 20}">20</option>
+			   <option value="30" th:selected="${pager.pageSize eq 30}">30</option>
+			   <option value="40" th:selected="${pager.pageSize eq 40}">40</option>
+			   <option value="50" th:selected="${pager.pageSize eq 50}">50</option>
+			   <option value="70" th:selected="${pager.pageSize eq 70}">70</option>
+              </select>
+                                  条
+             
+          
+          </div>
+          
+          
+          </div>
+          
+          <script th:inline="javascript">    
+          function page_searchIndex(){     
+        	  var size = $("#pageNumber").val();
+        	  var searchText = document.getElementById('john_Page_Search');        
+        	  var searchIndex = searchText != null && searchText.value != '' ? parseInt(searchText.value) : 0;        
+        	  if(searchIndex > 0 && searchIndex <= 3) { 
+        		  alert(searchIndex+":"+size+":"+[[${pager.pageSize}]]);
+        		  window.location=[[${#httpServletRequest.getContextPath()}]]+"/usertb/userlist?index="+searchIndex+"&size="+size;  
+        		  
+        		  }else{            
+        			  alert('需要跳转的页码不能超出范围！');        
+        		}    
+        	  }
+        //动态修改页面大小
+      	function chagePageSize(pageIndex){
+      		var pageSize=$("#pageNumber").val();// 新的页面大小
+      		window.location=[[${#httpServletRequest.getContextPath()}]]+"/usertb/userlist?index="+[[${pager.pageIndex}]]+"&size="+pageSize;
+      	}
+          </script>
         </div>
     </div>
 

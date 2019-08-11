@@ -30,48 +30,39 @@
                             <td height=10></td>
 						</tr>
 					</table>
-                    <table cellspacing=0 cellpadding=0 width=150 border=0>
+					<div th:each="oneMenuList:${session.user.role.menus}">
+					<!-- 一级菜单 -->
+                    <table cellspacing=0 cellpadding=0 width=150 border=0 >
                         <tr height=22>
                             <td style="padding-left: 30px" background=./img/menu_bt.jpg>
-							   <a     class=menuparent onclick=expand(1)  href="javascript:void(0);">个人中心</a>
+							   <a class=menuparent onclick=expand(1)  href="javascript:void(0);" 
+							   th:text="${oneMenuList.menuname}" th:onclick="|expand(${oneMenuList.menuid});|">个人中心</a>
 							 </td>
 						</tr>
                         <tr height=4>
                             <td></td>
 						</tr>
 					</table>
-                    <table id=child1 style="display: none" cellspacing=0 cellpadding=0  width=150 border=0>
-                        
-						<tr height=20>
+					
+					<!-- 二级菜单 -->
+					<!-- th:id="child${oneMenuList.menuid}" -->
+                    <table id=child1 style="display: none;" cellspacing=0 cellpadding=0  width=150 border=0 th:id="|child${oneMenuList.menuid}|">
+                        <!-- th:each="secondMenuList:${oneMenuList.seconds}" -->
+						<tr height=20 th:each="secondMenuList:${oneMenuList.seconds}" style="float:left">
                             <td align=middle width=30>
 								<img height=9 src="./img/menu_icon.gif" width=9>
 							</td>
                             <td>
-								<a class=menuchild  href="user/MyUser.html"  target="right">我的资料</a>
+								<a class=menuchild  href="user/MyUser.html"  target="right" 
+								th:text="${secondMenuList.menuname}" th:href="@{${secondMenuList.menupath}}">我的资料</a>
 							</td>
 						</tr>
-                        <tr height=20>
-                            <td align=middle width=30>
-								<img height=9   src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="user/class.html"  target="right">班级信息</a>
-							</td>
-						</tr>
-						<tr height=20>
-                            <td align=middle width=30>
-								<img height=9   src="./img/menu_icon.gif" width=9>
-							</td>
-                            <td>
-								<a class=menuchild  href="user/password.html"  target="right">修改密码</a>
-							</td>
-						</tr>
-						
+                      
                         <tr height=4>
                             <td colspan=2></td>
 						</tr>
 					</table>
-                    
+                    </div>
 					
 							
 							

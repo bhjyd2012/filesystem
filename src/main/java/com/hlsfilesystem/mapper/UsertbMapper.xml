@@ -26,7 +26,7 @@
 	    <id column="roleid" jdbcType="INTEGER" property="roleid" />
 	    <result column="rolename" jdbcType="VARCHAR" property="rolename" />
 	    <result column="rolestate" jdbcType="INTEGER" property="rolestate" />
-  </association>
+  		</association>
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -38,5 +38,9 @@
 	<select id="getUserByName" parameterType="String" resultMap="BaseResultMap">
 	select * from usertb u ,role r where u.role_id = r.roleid
 	and u.user_name = #{username}
+	</select>
+	<!-- 根据用户名查询用户 -->
+	<select id="getAllUserTb"  resultMap="BaseResultMap">
+	select * from usertb u ,role r where u.role_id = r.roleid
 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.hlsfilesystem.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -28,11 +29,20 @@ public class Menu implements Serializable {
     private String menupath;
     private Integer menustate;
     private String menuremark;
-    
+    @TableField(exist = false)
     private List<Role> roles;//对应多个角色
+    @TableField(exist = false)
+    private List<Menu> seconds;//二级菜单集合
 
+    public List<Menu> getSeconds() {
+		return seconds;
+	}
 
-    public List<Role> getRoles() {
+	public void setSeconds(List<Menu> seconds) {
+		this.seconds = seconds;
+	}
+
+	public List<Role> getRoles() {
 		return roles;
 	}
 
@@ -88,15 +98,12 @@ public class Menu implements Serializable {
         this.menuremark = menuremark;
     }
 
-    @Override
-    public String toString() {
-        return "Menu{" +
-        ", menuid=" + menuid +
-        ", menuname=" + menuname +
-        ", upmenuid=" + upmenuid +
-        ", menupath=" + menupath +
-        ", menustate=" + menustate +
-        ", menuremark=" + menuremark +
-        "}";
-    }
+	@Override
+	public String toString() {
+		return "Menu [menuid=" + menuid + ", menuname=" + menuname + ", upmenuid=" + upmenuid + ", menupath=" + menupath
+				+ ", menustate=" + menustate + ", menuremark=" + menuremark + ", seconds=" + seconds + "]";
+	}
+
+	
+    
 }

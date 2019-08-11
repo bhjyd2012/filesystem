@@ -19,5 +19,12 @@
     <sql id="Base_Column_List">
         menuid, menuname, upmenuid, menupath, menustate, menuremark
     </sql>
+    
+    <!-- 根据角色id获取菜单 -->
+     <select id="getmenusbyrid" resultMap="BaseResultMap">
+	    select * from menu,middle
+	  	where menu.menuid=middle.menuid
+	  	and middle.roleid=#{roleid}
+	  </select>
 
 </mapper>

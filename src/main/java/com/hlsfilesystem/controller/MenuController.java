@@ -1,6 +1,7 @@
 package com.hlsfilesystem.controller;
 
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.stereotype.Controller;
@@ -16,6 +17,10 @@ import org.springframework.stereotype.Controller;
 @Controller
 @RequestMapping("/menu")
 public class MenuController {
-
+	@GetMapping("/menulist")
+	public String getPowerUserList() {
+		
+		 return "power/menu/list";
+	}
 }
 

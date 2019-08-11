@@ -1,6 +1,7 @@
 package com.hlsfilesystem.bean;
 
 import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.enums.IdType;
@@ -25,7 +26,7 @@ public class Role implements Serializable {
     private Integer roleid;
     private String rolename;
     private Integer rolestate;
-    
+    @TableField(exist = false)
     private List<Menu> menus;//对应多个菜单
     
 
